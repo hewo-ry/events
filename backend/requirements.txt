@@ -1,0 +1,9 @@
+uvicorn
+fastapi
+sqlalchemy
+alembic
+psycopg2-binary
+authlib
+pydantic
+starlette
+pytz

@@ -6,6 +6,7 @@ from pathlib import Path
 from main import app
 import json
 import sys
+import os
 from config import settings
 
 
@@ -16,6 +17,10 @@ def main():
         build = settings.BUILD
 
     base_path = Path("docs/api")
+
+    if not base_path.exists() and Path("backend").exists():
+        os.makedirs(base_path)
+
     with open(base_path.joinpath("index.html"), "w") as html:
         html.write(
             get_redoc_html(

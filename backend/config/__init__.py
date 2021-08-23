@@ -1,6 +1,6 @@
 import os
 import pytz
-from typing import List, Optional
+from typing import List, Optional, Any
 from pydantic import BaseSettings, AnyHttpUrl
 
 
@@ -19,16 +19,14 @@ class Settings(BaseSettings):
     DATABASE_USER: str = os.environ.get("DB_USER")
     DATABASE_PASSWORD: str = os.environ.get("DB_PASS")
     DATABASE_NAME: str = os.environ.get("DB_NAME")
-    TIME_ZONE: pytz.timezone = pytz.timezone(
+    TIME_ZONE: Any = pytz.timezone(
         os.environ.get("TIMEZONE", os.environ.get("TZ", "UTC"))
     )
     OIDC: bool = os.environ.get("ENABLE_OIDC", True)
     OIDC_SERVER_METADATA_URL: Optional[AnyHttpUrl] = os.environ.get(
         "OIDC_SERVER_METADATA_URL"
     )
-    OIDC_SCOPE: List[str] = (
-        os.environ.get("OIDC_SCOPE", ["openid", "email", "profile"]),
-    )
+    OIDC_SCOPE: List[str] = os.environ.get("OIDC_SCOPE", ["openid", "email", "profile"])
     OIDC_CLIENT_ID: Optional[str] = os.environ.get("OIDC_CLIENT_ID")
     OIDC_CLIENT_SECRET: Optional[str] = os.environ.get("OIDC_CLIENT_SECRET")
 

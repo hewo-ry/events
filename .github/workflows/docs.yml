@@ -36,4 +36,4 @@ jobs:
           github_token: '${{ secrets.GITHUB_TOKEN  }}'
           # github_pat: '${{ secrets.GH_PAT }}'
           source_folder: docs
-        if: success() && github.event == 'push'
+        if: success() && github.event_name == 'push'

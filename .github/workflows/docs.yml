@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@master
       - run: |
           pip install -r backend/requirements.txt
-          python backend/generate_api_docs.py ${{ steps.date.outputs.date }}
+          python backend/generate_api_docs.py ${{ steps.date.outputs.date }} https://hewo-ry.github.io/events/docs/api/openapi.json
       - uses: seanmiddleditch/gha-publish-to-git@master
         with:
           branch: gh-pages

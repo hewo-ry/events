@@ -16,6 +16,11 @@ def main():
     else:
         build = settings.BUILD
 
+    if len(sys.argv) > 2:
+        custom_url = sys.argv[2]
+    else:
+        custom_url = None
+
     base_path = Path("docs/api")
 
     if not base_path.exists() and Path("backend").exists():
@@ -24,7 +29,7 @@ def main():
     with open(base_path.joinpath("index.html"), "w") as html:
         html.write(
             get_redoc_html(
-                openapi_url=app.openapi_url,
+                openapi_url=custom_url if custom_url else app.openapi_url,
                 title=app.title,
             ).body.decode("utf-8")
         )
